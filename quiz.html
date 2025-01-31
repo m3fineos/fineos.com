@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Financier - MoneyMap</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background-color: #0f172a;
+            color: #f2f2f2;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffd700;
+            margin-top: 2rem;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #1e293b;
+            border-radius: 10px;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            background-color: #ffd700;
+            color: #0f172a;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .option:hover {
+            background-color: #d4af37;
+        }
+
+        .result {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .next-button {
+            display: none;
+            margin-top: 1rem;
+            background-color: #ffd700;
+            color: #0f172a;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .next-button:hover {
+            background-color: #d4af37;
+        }
+
+        .retour {
+            margin-top: 2rem;
+        }
+
+        .retour a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .retour a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Financier</h1>
+    <div class="quiz-container">
+        <div id="question-container">
+            <p class="question" id="question-text">Chargement...</p>
+            <div class="options">
+                <button class="option" onclick="selectAnswer(0)">Option 1</button>
+                <button class="option" onclick="selectAnswer(1)">Option 2</button>
+                <button class="option" onclick="selectAnswer(2)">Option 3</button>
+                <button class="option" onclick="selectAnswer(3)">Option 4</button>
+            </div>
+            <p class="result" id="result-text"></p>
+            <button class="next-button" id="next-button" onclick="nextQuestion()">Suivant</button>
+        </div>
+    </div>
+
+    <div class="retour">
+        <a href="outils.html">Retour à Outils</a>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Que signifie PEA ?",
+                options: [
+                    "Plan d'Épargne en Actions",
+                    "Placement d'Épargne Automatique",
+                    "Portefeuille Européen d'Actions",
+                    "Prêt Économique Annuel"
+                ],
+                answer: 0,
+                explanation: "Le PEA permet d'investir en bourse avec des avantages fiscaux après 5 ans. <br><a href='https://www.amf-france.org/' target='_blank' style='color:#ffd700;'>En savoir plus sur AMF France</a>."
+            },
+            {
+                question: "Tu veux économiser 5 000€ en 2 ans. Combien dois-tu mettre de côté par mois ?",
+                options: [
+                    "150€/mois",
+                    "208€/mois",
+                    "250€/mois",
+                    "100€/mois"
+                ],
+                answer: 1,
+                explanation: "La formule : Objectif ÷ Nombre de mois = 5000€ ÷ 24 mois ≈ 208€/mois. <br><a href='https://www.lafinancepourtous.com/' target='_blank' style='color:#ffd700;'>En savoir plus sur la finance pour tous</a>."
+            },
+            {
+                question: "Ton salaire tombe, quelle est la meilleure approche budgétaire ?",
+                options: [
+                    "Je mets d'abord 20% de côté avant de dépenser.",
+                    "Je paie tout puis j'épargne ce qu'il reste.",
+                    "J’investis tout en crypto directement.",
+                    "Je fais un prêt pour couvrir mes dépenses."
+                ],
+                answer: 0,
+                explanation: "C'est la méthode du 'Pay Yourself First' : épargner avant de dépenser. <br><a href='https://www.mesquestionsdargent.fr/' target='_blank' style='color:#ffd700;'>En savoir plus sur la gestion budgétaire</a>."
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const questionData = questions[currentQuestion];
+            document.getElementById("question-text").innerText = questionData.question;
+            const buttons = document.querySelectorAll(".option");
+            
+            buttons.forEach((btn, index) => {
+                btn.innerText = questionData.options[index];
+                btn.disabled = false;
+                btn.style.backgroundColor = "#ffd700"; // Réinitialise les couleurs à jaune
+            });
+
+            document.getElementById("result-text").innerHTML = "";
+            document.getElementById("next-button").style.display = "none"; // Cache le bouton "Suivant"
+        }
+
+        function selectAnswer(index) {
+            const questionData = questions[currentQuestion];
+            const buttons = document.querySelectorAll(".option");
+
+            buttons.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === questionData.answer) {
+                    btn.style.backgroundColor = "#28a745"; // Vert pour la bonne réponse
+                } else if (i === index) {
+                    btn.style.backgroundColor = "#dc3545"; // Rouge si l'utilisateur s'est trompé
+                }
+            });
+
+            if (index === questionData.answer) {
+                document.getElementById("result-text").innerHTML = `<span style="color:#ffd700;">Bonne réponse !</span><br>${questionData.explanation}`;
+            } else {
+                document.getElementById("result-text").innerHTML = `<span style="color:#ff4d4d;">Mauvaise réponse !</span><br>${questionData.explanation}`;
+            }
+
+            document.getElementById("next-button").style.display = "block"; // Affiche le bouton "Suivant"
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("question-container").innerHTML = `<h2>Quiz terminé ! 🎉</h2>
+                    <p>Tu as appris des notions importantes, continue sur MoneyMap !</p>
+                    <div class="retour"><a href="outils.html">Retour à Outils</a></div>`;
+            }
+        }
+
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>

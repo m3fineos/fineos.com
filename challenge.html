@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 30 Jours - Fineos</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background-color: #0f172a;
+            color: #f2f2f2;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffd700;
+            margin-top: 2rem;
+        }
+
+        .challenge-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #1e293b;
+            border-radius: 10px;
+        }
+
+        .day {
+            background-color: #ffd700;
+            color: #0f172a;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            width: 100%;
+            text-align: left;
+            margin: 5px 0;
+        }
+
+        .day:hover {
+            background-color: #d4af37;
+        }
+
+        .day-content {
+            display: none;
+            padding: 10px;
+            background-color: #333;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+
+        .day-content a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .day-content a:hover {
+            text-decoration: underline;
+        }
+
+        .completed {
+            background-color: #28a745 !important;
+            color: #fff !important;
+        }
+
+        .retour {
+            margin-top: 2rem;
+        }
+
+        .retour a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .retour a:hover {
+            text-decoration: underline;
+        }
+
+        .badge-container {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .badge {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .badge-bronze {
+            background-color: #cd7f32;
+        }
+
+        .badge-silver {
+            background-color: #c0c0c0;
+        }
+
+        .badge-gold {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <h1>Challenge 30 Jours</h1>
+    <p>Suivez ce challenge jour après jour pour améliorer votre gestion financière.</p>
+
+    <div class="challenge-container">
+        <p><strong>Instructions :</strong> Cliquez sur un jour pour voir l'objectif, puis cochez lorsque c'est fait !</p>
+        <div id="challenge-list"></div>
+    </div>
+
+    <div class="retour">
+        <a href="outils.html">Retour à Outils</a>
+    </div>
+
+    <div class="badge-container" id="badge-container">
+        <!-- Les badges seront ajoutés ici -->
+    </div>
+
+    <script>
+        let completedTasks = 0;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const challengeData = [
+                "Définis un objectif d'épargne clair et atteignable.",
+                "Analyse tes dépenses des 3 derniers mois.",
+                "Sépare tes dépenses en 'besoins' et 'envies'.",
+                "Teste la règle du 50/30/20 sur ton budget.",
+                "Réduis une dépense inutile aujourd'hui.",
+                "Fixe-toi un montant d'épargne automatique mensuel.",
+                "Découvre ton <a href='https://www.lafinancepourtous.com/outils/calculateurs/calculateur-d-epargne/' target='_blank'>taux d'épargne idéal</a>.",
+                "Teste une journée sans dépenser un euro.",
+                "Apprends ce qu’est <a href='https://am.pictet.com/terredepargne/choisir-ses-placements/2023/l-interet-compose-explique-en-5-points' target='_blank'>l’intérêt composé</a>.",
+                "Lis un article sur la bourse et l’investissement.",
+                "Calcule combien tu perds en abonnements inutiles.",
+                "Fais le point sur tes assurances et compare les prix.",
+                "Essaie une application de gestion budgétaire (ex: Bankin').",
+                "Définis ton 'salaire idéal' en fonction de tes besoins.",
+                "Apprends ce qu’est un <a href='https://avenuedesinvestisseurs.fr/comprendre-investir-bourse/plan-depargne-en-actions-pea/#menu1' target='_blank'>PEA</a> et un <a href='https://avenuedesinvestisseurs.fr/per-plan-epargne-retraite/' target='_blank'>PER</a>.",
+                "Teste l’achat en gros pour économiser sur tes courses.",
+                "Vérifie ton taux d’endettement si tu as des crédits.",
+                "Fixe-toi une limite hebdomadaire pour tes loisirs.",
+                "Découvre comment <a href='https://avenuedesinvestisseurs.fr/investir-en-bourse-avec-petit-budget/' target='_blank'>investir avec peu d’argent</a>.",
+                "Regarde une vidéo YouTube de finance perso : <a href='https://www.youtube.com/watch?v=IaBE0AhJAqo' target='_blank'>Vidéo (3 min)</a>.",
+                "Planifie un 'budget prévisionnel' pour le mois prochain.",
+                "Identifie une mauvaise habitude financière à changer.",
+                "Découvre les <a href='https://avenuedesinvestisseurs.fr/comprendre-investir-bourse/trackers-performance-investir-bourse-pea-indiciel/' target='_blank'>ETF et leur rôle</a> dans l’investissement.",
+                "Fais le point sur tes comptes et supprime ceux inutiles.",
+                "Essaie de négocier une réduction sur un abonnement.",
+                "Lis un article sur la <a href='https://www.lesechos.fr/finance-marches/gestion-actifs/la-psychologie-de-largent-ou-comment-nos-emotions-guident-nos-decisions-financieres-1280614' target='_blank'>psychologie de l’argent</a>.",
+                "Teste l'arrondi à l'euro supérieur pour épargner. Certaines banques proposent des services qui arrondissent chacune de tes dépenses à l'euro supérieur et transfèrent la différence sur un compte épargne. Renseigne-toi auprès de ta banque !",
+                "Fixe-toi un objectif à long terme (ex: achat immobilier).",
+                "Évalue ton challenge : qu’as-tu appris ?",
+                "Fixe-toi un plan financier pour l’année à venir."
+            ];
+
+            const listContainer = document.getElementById("challenge-list");
+
+            challengeData.forEach((task, index) => {
+                const dayButton = document.createElement("button");
+                dayButton.classList.add("day");
+                dayButton.innerText = `Jour ${index + 1}`;
+                dayButton.onclick = function() {
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === "block" ? "none" : "block";
+                };
+
+                const dayContent = document.createElement("div");
+                dayContent.classList.add("day-content");
+                dayContent.innerHTML = `<p>${task}</p><button class="complete-button" onclick="markAsComplete(this)">✔ Terminé</button>`;
+
+                listContainer.appendChild(dayButton);
+                listContainer.appendChild(dayContent);
+            });
+        });
+
+        function markAsComplete(button) {
+            const dayButton = button.parentElement.previousElementSibling;
+            dayButton.classList.add("completed");
+            button.disabled = true;
+            button.innerText = "✅ Terminé !";
+
+            completedTasks++;
+            updateBadgeDisplay();
+        }
+
+        function updateBadgeDisplay() {
+            const badgeContainer = document.getElementById('badge-container');
+            badgeContainer.innerHTML = ''; // Réinitialise les badges affichés
+
+            if (completedTasks >= 5) {
+                const badgeBronze = document.createElement('div');
+                badgeBronze.classList.add('badge', 'badge-bronze');
+                badgeBronze.textContent = '5/5';
+                badgeContainer.appendChild(badgeBronze);
+            }
+            if (completedTasks >= 15) {
+                const badgeSilver = document.createElement('div');
+                badgeSilver.classList.add('badge', 'badge-silver');
+                badgeSilver.textContent = '15/15';
+                badgeContainer.appendChild(badgeSilver);
+            }
+            if (completedTasks >= 30) {
+                const badgeGold = document.createElement('div');
+                badgeGold.classList.add('badge', 'badge-gold');
+                badgeGold.textContent = '30/30';
+                badgeContainer.appendChild(badgeGold);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fineos</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <style>
+        /* Styles généraux */
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', Georgia, serif;
+            background-color: #0f172a; /* Bleu foncé */
+            color: #f2f2f2; /* Texte clair */
+        }
+
+        /* En-tête avec image de fond floutée */
+        .en-tete {
+            position: relative;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #ffd700; /* Doré */
+        }
+
+        .en-tete::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('background.jpg') no-repeat center center/cover;
+            filter: blur(8px) brightness(0.7);
+            z-index: -1;
+        }
+
+        .en-tete h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            background-color: #1e293b;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navigation a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contenu principal */
+        .contenu {
+            padding: 2rem;
+        }
+
+        .fonctionnalites {
+            background-color: #1e293b;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .fonctionnalites h3 {
+            color: #ffd700;
+        }
+
+        /* Pied de page */
+        .pied-de-page {
+            text-align: center;
+            background-color: #1e293b;
+            padding: 1rem;
+            color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête -->
+    <header class="en-tete">
+        <h1>Fineos</h1>
+        <p>Éclairez vos finances, maîtrisez votre avenir.</p>
+    </header>
+
+    <!-- Barre de navigation -->
+    <nav class="navigation">
+        <a href="#accueil">Accueil</a>
+        <a href="outils.html">Outils</a>
+        <a href="quiz.html">Quiz Interactif</a>
+        <a href="challenge.html">Challenge 30 jours</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact" onclick="location.href='contact.html';">Contact</a>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="contenu">
+        <section id="accueil">
+            <h2>Bienvenue sur Fineos</h2>
+            <p>Notre mission est de rendre les finances accessibles aux jeunes actifs. Découvrez nos outils et ressources pédagogiques pour mieux gérer votre budget.</p>
+
+            <div class="fonctionnalites">
+                <h3>Fonctionnalités à venir :</h3>
+                <ul>
+                    <li>Simulateur boursier</li>
+                    <li>Calculateur d'épargne</li>
+                    <li>Tableaux interactifs pour vos investissements</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="apropos">
+            <h2>À propos</h2>
+            <p>Fineos est né de la passion pour la transmission des connaissances financières. Nous croyons que chacun mérite de maîtriser ses finances.</p>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="pied-de-page">
+        <p>&copy; 2025 Fineos. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur Boursier</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'EB Garamond', serif;
+            background-color: #0f172a;
+            color: #f2f2f2;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffd700;
+        }
+
+        form {
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+
+        input, button {
+            padding: 0.5rem;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #ffd700;
+            color: #0f172a;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d4af37;
+        }
+
+        .resources {
+            margin-top: 2rem;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .resources h3 {
+            color: #ffd700;
+        }
+
+        .resources ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .resources li {
+            margin-bottom: 0.5rem;
+        }
+
+        .resources a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .resources a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulateur Boursier</h1>
+    <p>Entrez un montant pour simuler votre rendement potentiel en un an.</p>
+    <form>
+        <label for="invest">Montant à investir (€) :</label><br>
+        <input type="number" id="invest" name="invest" placeholder="Ex : 1000"><br>
+        <button type="button" onclick="simulate()">Simuler</button>
+    </form>
+    <p id="result"></p>
+
+    <div class="resources">
+        <h3>Ressources pédagogiques :</h3>
+        <ul>
+            <li><a href="https://www.investopedia.com/" target="_blank">Investopedia (anglais)</a> : Guide complet sur l’investissement.</li>
+            <li><a href="https://www.amf-france.org/" target="_blank">AMF France</a> : Autorité des Marchés Financiers, pour comprendre la bourse.</li>
+            <li><a href="https://bourse-de-paris.fr/" target="_blank">Bourse de Paris</a> : Informations sur les actions françaises.</li>
+        </ul>
+    </div>
+
+    <script>
+        function simulate() {
+            const invest = parseFloat(document.getElementById('invest').value);
+            if (isNaN(invest)) {
+                document.getElementById('result').innerText = "Veuillez entrer un montant valide.";
+                return;
+            }
+            const result = invest * 1.07; // Rendement de 7%
+            document.getElementById('result').innerText = `Votre investissement vaudra ${result.toFixed(2)}€ après un an !`;
+        }
+    </script>
+    <div class="retour">
+        <a href="outils.html" style="color: #ffd700; text-decoration: none; font-weight: bold;">Retour à Outils</a>
+    </div>    
+</body>
+</html>
