@@ -1,89 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outils - Fineos</title>
-    <style>
-        /* Styles généraux */
-        body {
-            margin: 0;
-            font-family: 'EB Garamond', serif;
-            background-color: #0f172a;
-            color: #f2f2f2;
-        }
-
-        /* En-tête */
-        .en-tete {
-            text-align: center;
-            padding: 2rem;
-            background-color: #1e293b;
-            color: #ffd700;
-        }
-
-        .en-tete h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        /* Contenu principal */
-        .contenu {
-            padding: 2rem;
-        }
-
-        .section-outil {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            background-color: #1e293b;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-
-        .icon {
-            width: 80px;
-            height: 80px;
-            background-color: #ffd700;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 1.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0f172a;
-        }
-
-        .description-outil {
-            flex-grow: 1;
-        }
-
-        .description-outil h3 {
-            margin: 0 0 0.5rem;
-            color: #ffd700;
-        }
-
-        .description-outil p {
-            margin: 0;
-        }
-
-        /* Lien retour */
-        .retour {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .retour a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .retour a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- En-tête -->
@@ -92,62 +15,79 @@
         <p>Explorez nos outils interactifs pour optimiser vos finances.</p>
     </header>
 
+    <!-- Barre de navigation -->
+    <nav class="navigation">
+        <a href="index.html">Accueil</a>
+        <a href="outils.html">Outils</a>
+        <a href="quiz.html">Quiz Interactif</a>
+        <a href="challenge.html">Challenge 30 jours</a>
+        <a href="#apropos">À propos</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
     <!-- Contenu principal -->
     <main class="contenu">
-        <!-- Simulateur boursier -->
-        <div class="section-outil">
-            <div class="icon">📊</div>
-            <div class="description-outil">
-                <h3>Simulateur boursier</h3>
-                <p>Un outil interactif pour simuler vos investissements en bourse et suivre vos gains potentiels.</p>
-                <a href="simulateur.html" style="color: #ffd700; text-decoration: none; font-weight: bold;">En savoir plus</a>
+        <div class="outils-container">
+            <!-- Simulateur boursier -->
+            <div class="section-outil">
+                <div class="icon">📊</div>
+                <div class="description-outil">
+                    <h3>Simulateur boursier</h3>
+                    <p>Un outil interactif pour simuler vos investissements en bourse et suivre vos gains potentiels.</p>
+                    <a href="simulateur.html" class="bouton">En savoir plus</a>
+                </div>
             </div>
-        </div>
 
-        <!-- Calculateur d'épargne -->
-        <div class="section-outil">
-            <div class="icon">💰</div>
-            <div class="description-outil">
-                <h3>Calculateur d'épargne</h3>
-                <p>Calculez vos économies et anticipez vos objectifs financiers grâce à notre calculateur précis.</p>
-                <a href="epargne.html" style="color: #ffd700; text-decoration: none; font-weight: bold;">En savoir plus</a>
+            <!-- Calculateur d'épargne -->
+            <div class="section-outil">
+                <div class="icon">💰</div>
+                <div class="description-outil">
+                    <h3>Calculateur d'épargne</h3>
+                    <p>Calculez vos économies et anticipez vos objectifs financiers grâce à notre calculateur précis.</p>
+                    <a href="epargne.html" class="bouton">En savoir plus</a>
+                </div>
             </div>
-        </div>
 
-        <!-- Tableaux interactifs -->
-        <div class="section-outil">
-            <div class="icon">📈</div>
-            <div class="description-outil">
-                <h3>Tableaux interactifs</h3>
-                <p>Visualisez vos investissements avec des tableaux dynamiques et des graphiques personnalisés.</p>
-                <a href="tableaux.html" style="color: #ffd700; text-decoration: none; font-weight: bold;">En savoir plus</a>
+            <!-- Tableaux interactifs -->
+            <div class="section-outil">
+                <div class="icon">📈</div>
+                <div class="description-outil">
+                    <h3>Tableaux interactifs</h3>
+                    <p>Visualisez vos investissements avec des tableaux dynamiques et des graphiques personnalisés.</p>
+                    <a href="tableaux.html" class="bouton">En savoir plus</a>
+                </div>
             </div>
-        </div>
 
-        <div class="section-outil">
-            <div class="icon">🧠</div>
-            <div class="description-outil">
-                <h3>Quiz Interactif</h3>
-                <p>Testez vos connaissances en gestion financière et apprenez en vous amusant !</p>
-                <a href="quiz.html" style="color: #ffd700; text-decoration: none; font-weight: bold;">Lancer le quiz</a>
+            <!-- Quiz Interactif -->
+            <div class="section-outil">
+                <div class="icon">🧠</div>
+                <div class="description-outil">
+                    <h3>Quiz Interactif</h3>
+                    <p>Testez vos connaissances en gestion financière et apprenez en vous amusant !</p>
+                    <a href="quiz.html" class="bouton">Lancer le quiz</a>
+                </div>
             </div>
-        </div>
 
-        <div class="section-outil">
-            <div class="icon">📅</div>
-            <div class="description-outil">
-                <h3>Challenge 30 jours</h3>
-                <p>Améliorez votre gestion financière en suivant un défi quotidien simple et efficace !</p>
-                <a href="challenge.html" style="color: #ffd700; text-decoration: none; font-weight: bold;">Commencer le Challenge</a>
+            <!-- Challenge 30 jours -->
+            <div class="section-outil">
+                <div class="icon">📅</div>
+                <div class="description-outil">
+                    <h3>Challenge 30 jours</h3>
+                    <p>Améliorez votre gestion financière en suivant un défi quotidien simple et efficace !</p>
+                    <a href="challenge.html" class="bouton">Commencer le Challenge</a>
+                </div>
             </div>
         </div>
-        
-        
 
         <!-- Lien retour -->
         <div class="retour">
             <a href="index.html">Retour à l'accueil</a>
         </div>
     </main>
+
+    <!-- Pied de page -->
+    <footer class="pied-de-page">
+        <p>&copy; 2025 Fineos. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>

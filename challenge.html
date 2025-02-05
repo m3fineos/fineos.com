@@ -1,31 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge 30 Jours - Fineos</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            margin: 0;
-            font-family: 'EB Garamond', serif;
-            background-color: #0f172a;
-            color: #f2f2f2;
-            text-align: center;
-        }
-
-        h1 {
-            color: #ffd700;
-            margin-top: 2rem;
-        }
-
-        .challenge-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            background-color: #1e293b;
-            border-radius: 10px;
-        }
-
         .day {
             background-color: #ffd700;
             color: #0f172a;
@@ -45,95 +27,58 @@
         }
 
         .day-content {
-            display: none;
+            display: none;  /* Caché par défaut */
             padding: 10px;
             background-color: #333;
             margin-top: 5px;
             border-radius: 5px;
         }
 
-        .day-content a {
-            color: #ffd700;
-            text-decoration: none;
-        }
-
-        .day-content a:hover {
-            text-decoration: underline;
-        }
-
         .completed {
             background-color: #28a745 !important;
             color: #fff !important;
         }
-
-        .retour {
-            margin-top: 2rem;
-        }
-
-        .retour a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .retour a:hover {
-            text-decoration: underline;
-        }
-
-        .badge-container {
-            position: fixed;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        .badge {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-size: 14px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .badge-bronze {
-            background-color: #cd7f32;
-        }
-
-        .badge-silver {
-            background-color: #c0c0c0;
-        }
-
-        .badge-gold {
-            background-color: #ffd700;
-        }
     </style>
 </head>
 <body>
-    <h1>Challenge 30 Jours</h1>
-    <p>Suivez ce challenge jour après jour pour améliorer votre gestion financière.</p>
+    <!-- En-tête -->
+    <header class="en-tete">
+        <h1>Challenge 30 Jours</h1>
+        <p>Améliorez votre gestion financière jour après jour avec Fineos.</p>
+    </header>
 
-    <div class="challenge-container">
-        <p><strong>Instructions :</strong> Cliquez sur un jour pour voir l'objectif, puis cochez lorsque c'est fait !</p>
-        <div id="challenge-list"></div>
-    </div>
+    <!-- Barre de navigation -->
+    <nav class="navigation">
+        <a href="index.html">Accueil</a>
+        <a href="outils.html">Outils</a>
+        <a href="quiz.html">Quiz Interactif</a>
+        <a href="challenge.html">Challenge 30 jours</a>
+        <a href="index.html#apropos">À propos</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
-    <div class="retour">
-        <a href="outils.html">Retour à Outils</a>
-    </div>
+    <!-- Contenu principal -->
+    <main class="contenu">
+        <div class="challenge-container">
+            <p><strong>Instructions :</strong> Cliquez sur un jour pour voir l'objectif, puis cochez lorsque c'est fait !</p>
+            <div id="challenge-list"></div>
+        </div>
 
-    <div class="badge-container" id="badge-container">
-        <!-- Les badges seront ajoutés ici -->
-    </div>
+        <div class="retour">
+            <a href="outils.html">Retour à Outils</a>
+        </div>
 
+        <div class="badge-container" id="badge-container">
+            <!-- Les badges seront ajoutés ici -->
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="pied-de-page">
+        <p>&copy; 2025 Fineos. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script du Challenge -->
     <script>
         let completedTasks = 0;
 
@@ -165,7 +110,7 @@
                 "Fais le point sur tes comptes et supprime ceux inutiles.",
                 "Essaie de négocier une réduction sur un abonnement.",
                 "Lis un article sur la <a href='https://www.lesechos.fr/finance-marches/gestion-actifs/la-psychologie-de-largent-ou-comment-nos-emotions-guident-nos-decisions-financieres-1280614' target='_blank'>psychologie de l’argent</a>.",
-                "Teste l'arrondi à l'euro supérieur pour épargner. Certaines banques proposent des services qui arrondissent chacune de tes dépenses à l'euro supérieur et transfèrent la différence sur un compte épargne. Renseigne-toi auprès de ta banque !",
+                "Teste l'arrondi à l'euro supérieur pour épargner.",
                 "Fixe-toi un objectif à long terme (ex: achat immobilier).",
                 "Évalue ton challenge : qu’as-tu appris ?",
                 "Fixe-toi un plan financier pour l’année à venir."
@@ -184,7 +129,7 @@
 
                 const dayContent = document.createElement("div");
                 dayContent.classList.add("day-content");
-                dayContent.innerHTML = `<p>${task}</p><button class="complete-button" onclick="markAsComplete(this)">✔ Terminé</button>`;
+                dayContent.innerHTML = `<p>${task}</p><button class="bouton" onclick="markAsComplete(this)">✔ Terminé</button>`;
 
                 listContainer.appendChild(dayButton);
                 listContainer.appendChild(dayContent);
@@ -203,25 +148,16 @@
 
         function updateBadgeDisplay() {
             const badgeContainer = document.getElementById('badge-container');
-            badgeContainer.innerHTML = ''; // Réinitialise les badges affichés
+            badgeContainer.innerHTML = '';
 
             if (completedTasks >= 5) {
-                const badgeBronze = document.createElement('div');
-                badgeBronze.classList.add('badge', 'badge-bronze');
-                badgeBronze.textContent = '5/5';
-                badgeContainer.appendChild(badgeBronze);
+                badgeContainer.innerHTML += '<div class="badge badge-bronze">5/5</div>';
             }
             if (completedTasks >= 15) {
-                const badgeSilver = document.createElement('div');
-                badgeSilver.classList.add('badge', 'badge-silver');
-                badgeSilver.textContent = '15/15';
-                badgeContainer.appendChild(badgeSilver);
+                badgeContainer.innerHTML += '<div class="badge badge-silver">15/15</div>';
             }
             if (completedTasks >= 30) {
-                const badgeGold = document.createElement('div');
-                badgeGold.classList.add('badge', 'badge-gold');
-                badgeGold.textContent = '30/30';
-                badgeContainer.appendChild(badgeGold);
+                badgeContainer.innerHTML += '<div class="badge badge-gold">30/30</div>';
             }
         }
     </script>

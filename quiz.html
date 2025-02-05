@@ -3,113 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Financier - MoneyMap</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'EB Garamond', serif;
-            background-color: #0f172a;
-            color: #f2f2f2;
-            text-align: center;
-        }
-
-        h1 {
-            color: #ffd700;
-            margin-top: 2rem;
-        }
-
-        .quiz-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            background-color: #1e293b;
-            border-radius: 10px;
-        }
-
-        .question {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .option {
-            background-color: #ffd700;
-            color: #0f172a;
-            border: none;
-            padding: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .option:hover {
-            background-color: #d4af37;
-        }
-
-        .result {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .next-button {
-            display: none;
-            margin-top: 1rem;
-            background-color: #ffd700;
-            color: #0f172a;
-            border: none;
-            padding: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .next-button:hover {
-            background-color: #d4af37;
-        }
-
-        .retour {
-            margin-top: 2rem;
-        }
-
-        .retour a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .retour a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Quiz Financier - Fineos</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Quiz Financier</h1>
-    <div class="quiz-container">
-        <div id="question-container">
+    <!-- En-tête -->
+    <header class="en-tete">
+        <h1>Quiz Financier</h1>
+        <p>Testez vos connaissances financières avec Fineos.</p>
+    </header>
+
+    <!-- Barre de navigation -->
+    <nav class="navigation">
+        <a href="index.html">Accueil</a>
+        <a href="outils.html">Outils</a>
+        <a href="quiz.html">Quiz Interactif</a>
+        <a href="challenge.html">Challenge 30 jours</a>
+        <a href="#apropos">À propos</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="contenu">
+        <div class="quiz-container">
             <p class="question" id="question-text">Chargement...</p>
             <div class="options">
-                <button class="option" onclick="selectAnswer(0)">Option 1</button>
-                <button class="option" onclick="selectAnswer(1)">Option 2</button>
-                <button class="option" onclick="selectAnswer(2)">Option 3</button>
-                <button class="option" onclick="selectAnswer(3)">Option 4</button>
+                <button class="bouton" onclick="selectAnswer(0)">Option 1</button>
+                <button class="bouton" onclick="selectAnswer(1)">Option 2</button>
+                <button class="bouton" onclick="selectAnswer(2)">Option 3</button>
+                <button class="bouton" onclick="selectAnswer(3)">Option 4</button>
             </div>
             <p class="result" id="result-text"></p>
-            <button class="next-button" id="next-button" onclick="nextQuestion()">Suivant</button>
+            <button class="bouton" id="next-button" onclick="nextQuestion()">Suivant</button>
         </div>
-    </div>
 
-    <div class="retour">
-        <a href="outils.html">Retour à Outils</a>
-    </div>
+        <div class="retour">
+            <a href="outils.html">Retour à Outils</a>
+        </div>
+    </main>
 
+    <!-- Pied de page -->
+    <footer class="pied-de-page">
+        <p>&copy; 2025 Fineos. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script du Quiz -->
     <script>
         const questions = [
             {
@@ -152,28 +91,28 @@
         function loadQuestion() {
             const questionData = questions[currentQuestion];
             document.getElementById("question-text").innerText = questionData.question;
-            const buttons = document.querySelectorAll(".option");
-            
+            const buttons = document.querySelectorAll(".options .bouton");
+
             buttons.forEach((btn, index) => {
                 btn.innerText = questionData.options[index];
                 btn.disabled = false;
-                btn.style.backgroundColor = "#ffd700"; // Réinitialise les couleurs à jaune
+                btn.style.backgroundColor = "#ffd700";  // Couleur des boutons réinitialisée
             });
 
             document.getElementById("result-text").innerHTML = "";
-            document.getElementById("next-button").style.display = "none"; // Cache le bouton "Suivant"
+            document.getElementById("next-button").style.display = "none";
         }
 
         function selectAnswer(index) {
             const questionData = questions[currentQuestion];
-            const buttons = document.querySelectorAll(".option");
+            const buttons = document.querySelectorAll(".options .bouton");
 
             buttons.forEach((btn, i) => {
                 btn.disabled = true;
                 if (i === questionData.answer) {
                     btn.style.backgroundColor = "#28a745"; // Vert pour la bonne réponse
                 } else if (i === index) {
-                    btn.style.backgroundColor = "#dc3545"; // Rouge si l'utilisateur s'est trompé
+                    btn.style.backgroundColor = "#dc3545"; // Rouge pour la mauvaise réponse
                 }
             });
 
@@ -183,7 +122,7 @@
                 document.getElementById("result-text").innerHTML = `<span style="color:#ff4d4d;">Mauvaise réponse !</span><br>${questionData.explanation}`;
             }
 
-            document.getElementById("next-button").style.display = "block"; // Affiche le bouton "Suivant"
+            document.getElementById("next-button").style.display = "block";
         }
 
         function nextQuestion() {
@@ -191,8 +130,9 @@
             if (currentQuestion < questions.length) {
                 loadQuestion();
             } else {
-                document.getElementById("question-container").innerHTML = `<h2>Quiz terminé ! 🎉</h2>
-                    <p>Tu as appris des notions importantes, continue sur MoneyMap !</p>
+                document.querySelector(".quiz-container").innerHTML = `
+                    <h2>Quiz terminé ! 🎉</h2>
+                    <p>Tu as appris des notions importantes, continue sur Fineos !</p>
                     <div class="retour"><a href="outils.html">Retour à Outils</a></div>`;
             }
         }

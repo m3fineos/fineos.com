@@ -1,85 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - FinLight</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'EB Garamond', serif;
-            background-color: #0f172a;
-            color: #f2f2f2;
-        }
-
-        .en-tete {
-            text-align: center;
-            padding: 2rem;
-            background-color: #1e293b;
-            color: #ffd700;
-        }
-
-        .contenu {
-            padding: 2rem;
-        }
-
-        .associe {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-right: 1.5rem;
-            border: 2px solid #ffd700;
-        }
-
-        .description {
-            color: #ffd700;
-        }
-
-        .retour {
-            text-align: center;
-        }
-
-        .retour a {
-            color: #ffd700;
-            text-decoration: none;
-        }
-    </style>
+    <title>Contact - Fineos</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- En-tête -->
     <header class="en-tete">
         <h1>Contact</h1>
+        <p>Rencontrez les fondateurs passionnés de Fineos.</p>
     </header>
+
+    <!-- Barre de navigation -->
+    <nav class="navigation">
+        <a href="index.html">Accueil</a>
+        <a href="outils.html">Outils</a>
+        <a href="quiz.html">Quiz Interactif</a>
+        <a href="challenge.html">Challenge 30 jours</a>
+        <a href="index.html#apropos">À propos</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Contenu principal -->
     <main class="contenu">
-        <div class="associe">
-            <img src="louise.jpeg" alt="Louise" class="photo">
-            <div class="description">
+        <div class="section-outil">
+            <img src="louise.jpeg" alt="Louise" class="icon">
+            <div class="description-outil">
                 <h3>Louise</h3>
-                <p>Fondateur de Fineos, passionné par la pédagogie financière.</p>
+                <p>Fondatrice de Fineos, passionnée par la pédagogie financière.</p>
             </div>
         </div>
-        <div class="associe">
-            <img src="mathis.jpeg" alt="Mathis" class="photo">
-            <div class="description">
+
+        <div class="section-outil">
+            <img src="mathis.jpeg" alt="Mathis" class="icon">
+            <div class="description-outil">
                 <h3>Mathis</h3>
-                <p>Fondateur de Fineos, passionné par la pédagogie financière.</p>
+                <p>Fondateur de Fineos, engagé dans l'éducation financière des jeunes actifs.</p>
             </div>
         </div>
-        <div class="associe">
-            <img src="adrien.jpeg" alt="Adrien" class="photo">
-            <div class="description">
+
+        <div class="section-outil">
+            <img src="adrien.jpeg" alt="Adrien" class="icon">
+            <div class="description-outil">
                 <h3>Adrien</h3>
-                <p>Fondateur de Fineos, passionné par la pédagogie financière.</p>
+                <p>Fondateur de Fineos, développeur et expert en finances personnelles.</p>
             </div>
         </div>
+
         <div class="retour">
             <a href="index.html">Retour à l'accueil</a>
         </div>
     </main>
+
+    <!-- Pied de page -->
+    <footer class="pied-de-page">
+        <p>&copy; 2025 Fineos. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
